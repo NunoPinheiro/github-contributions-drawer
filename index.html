@@ -21,6 +21,9 @@
     <p>
       Text To Append : <input id="textToAppend" type="text" />
     </p>
+    <p>
+      Commits Density : <input id="commitDensity" type="number" value="1"/>
+    </p>
     <div class="container"></div>
 
     <button onclick="toggleContributionsDetails()">Toggle Contribution Details</button>
@@ -45,8 +48,8 @@
         var chosen = heatmap.data().filter(datapoint => {
           return datapoint.date.toDateString() == data.date.toDateString()
         });
-
-        chosen[0].count++;
+        var commitDensity = document.getElementById("commitDensity").value || 1;
+        chosen[0].count+= commitDensity;
         heatmap();
       }
       heatmap.onClick(clickHandler);
