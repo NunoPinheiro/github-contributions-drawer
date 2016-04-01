@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="vendor/calendar-heatmap.css" />
+    <script src="vendor/calendar-heatmap.js"> </script>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <p>
+      Name : <input id="name" type="text" />
+    </p>
+    <p>
+    E-mail : <input id="email" type="email" />
+    </p>
+    <p>
+      Commit Message : <textarea id="commitMessage" >This is the commit message</textarea>
+    </p>
+    <p>
+      File Name : <input id="fileName" type="text" />
+    </p>
+    <p>
+      Text To Append : <input id="textToAppend" type="text" />
+    </p>
+    <div class="container"></div>
+
+    <button onclick="toggleContributionsDetails()">Toggle Contribution Details</button>
+    <button onclick="generateCommits()">Generate</button>
+    <div id="generated"></div>
+
+    <script type="text/javascript">
+       var now = moment().endOf('day').toDate();
+       var yearAgo = moment().startOf('day').subtract(1, 'year').toDate();
+       var chartData = d3.time.days(yearAgo,  moment().startOf('day').toDate()).map(function (dateElement) {
+         return {
+           date: dateElement,
+           count: 0
+         };
+       });
+       var heatmap = calendarHeatmap()
+                       .data(chartData)
+                       .selector('.container')
+                       .tooltipEnabled(false)
+                       .colorRange(['#f4f7f7', '#79a8a9']);
+      var clickHandler = function(data){
+        var chosen = heatmap.data().filter(datapoint => {
+          return datapoint.date.toDateString() == data.date.toDateString()
+        });
+
+        chosen[0].count++;
+        heatmap();
+      }
+      heatmap.onClick(clickHandler);
+
+      heatmap();  // render the chart
+
+      function toggleContributionsDetails(){
+        heatmap.tooltipEnabled(!heatmap.tooltipEnabled());
+        heatmap();
+      };
+
+      function generateCommits(){
+        var name = document.getElementById("name").value;
+        var fileName = document.getElementById("fileName").value;
+        var textToAppend = document.getElementById("textToAppend").value;
+        var email = document.getElementById("email").value;
+        var author = name + "<" + email + ">";
+        var commitMessage = document.getElementById("commitMessage").value;
+
+        var generatedCommits = "";
+        heatmap.data().forEach(function(element){
+          for(var i = 0; i < element.count; i++){
+            generatedCommits += `echo "${textToAppend}" >> ${fileName}; git add ${fileName}; git commit -m "${commitMessage}" --date="${element.date}" --author="${author}";\n`;
+          }
+        });
+
+        document.getElementById("generated").innerText = generatedCommits;
+      };
+     </script>
+   </body>
+</html>
