@@ -2,7 +2,8 @@
 
 Draw your github contributions from the last year on github!
 
-<insert image>
+![alt tag](https://raw.githubusercontent.com/NunoPinheiro/github-contributions-drawer/master/sample.png)
+
 ## Usage
 
 ### How it works
