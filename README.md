@@ -58,6 +58,7 @@ Have a nice change? Wanna PR it?
 I don't have a roadmap, but if I had to create one, it would probably start with these points:
  - Make a decent interface
  - Export/Import the data from the image
+ - Validations : we're not validating the inputs..
 
 ## Inspirations
 This project was inspired by other similar projects:
