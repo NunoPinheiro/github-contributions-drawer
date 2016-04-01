@@ -6,6 +6,10 @@ Draw your github contributions from the last year on github!
 
 ## Usage
 
+### No Checkout Required!
+It's just an html, you can use it from the GitHub Page:
+http://nunopinheiro.github.io/github-contributions-drawer/
+
 ### How it works
 This project generates a bunch of bash lines based on your drawing. You just run them in your console (inside your git project),
 
@@ -43,6 +47,17 @@ You can see the drawing in my smurf profile:
 https://github.com/nunogrilo
 
 I added my smurf account as a contributor for the commits to appear.
+
+## The Future!!!
+### Contributing
+Any ideas? Just open an issue.
+
+Have a nice change? Wanna PR it?
+
+### Roadmap
+I don't have a roadmap, but if I had to create one, it would probably start with these points:
+ - Make a decent interface
+ - Export/Import the data from the image
 
 ## Inspirations
 This project was inspired by other similar projects:
