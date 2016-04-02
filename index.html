@@ -1,38 +1,70 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="vendor/calendar-heatmap.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="vendor/calendar-heatmap.js"> </script>
+    <style>
+      .page-header{
+        margin-top: 0px;
+      }
+      .page-header > h1{
+        margin-top: 0px;
+        padding-top: 10px;
+      }
+
+      .calendar-heatmap{
+        box-sizing: content-box;
+      }
+    </style>
   </head>
   <body>
     <a href="https://github.com/NunoPinheiro/github-contributions-drawer"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js" charset="utf-8"></script>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <p>
-      Name : <input id="name" type="text" />
-    </p>
-    <p>
-    E-mail : <input id="email" type="email" />
-    </p>
-    <p>
-      Commit Message : <textarea id="commitMessage" >This is the commit message</textarea>
-    </p>
-    <p>
-      File Name : <input id="fileName" type="text" />
-    </p>
-    <p>
-      Text To Append : <input id="textToAppend" type="text" />
-    </p>
-    <p>
-      Commits Density : <input id="commitDensity" type="number" value="1"/>
-    </p>
-    <div class="container"></div>
+    <div class="page-header bg-primary">
+      <h1>GitHub Contributions Drawer</h1>
+    </div>
+    <div class="container">
+      <div class="col-md-4">
+        <div class="form">
+          <div class="form-group">
+            <label for="name "> Name </label>
+            <input class="form-control" id="name" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="email"> E-mail </label>
+            <input class="form-control" id="email" type="email" />
+          </div>
+          <div class="form-group">
+              <label for="commitMessage"> Commit Message </label>
+              <input type="text" class="form-control" id="commitMessage" value="This is the commit message"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form">
+          <div class="form-group">
+            <label for="fileName"> File Name</label>
+            <input class="form-control" id="fileName" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="textToAppend"> Text To Append</label>
+            <input class="form-control" id="textToAppend" type="text" />
+          </div>
+          <div class="form-group">
+            <label for="commitDensity"> Commits Density</label>
+            <input class="form-control" id="commitDensity" type="number" value="1"/>
+            </div>
+          </div>
+        </div>
 
-    <button onclick="toggleContributionsDetails()">Toggle Contribution Details</button>
-    <button onclick="generateCommits()">Generate</button>
-    <div id="generated"></div>
+      <div id="contributions"></div>
 
-    <script type="text/javascript" src="commit-drawer.js">
+      <button class="btn btn-default" onclick="toggleContributionsDetails()">Toggle Contribution Details</button>
+      <button class="btn btn-primary" onclick="generateCommits()">Generate</button>
+    </div>
+    <code id="generated"></code>
 
-     </script>
+    <script type="text/javascript" src="commit-drawer.js"></script>
    </body>
 </html>

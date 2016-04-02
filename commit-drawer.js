@@ -8,7 +8,7 @@ var chartData = d3.time.days(yearAgo,  moment().startOf('day').toDate()).map(fun
 });
 var heatmap = calendarHeatmap()
                 .data(chartData)
-                .selector('.container')
+                .selector('#contributions')
                 .tooltipEnabled(false)
                 .colorRange(['#f4f7f7', '#79a8a9']);
 var clickHandler = function(data){
