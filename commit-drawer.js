@@ -17,7 +17,7 @@ var chosen = heatmap.data().filter(datapoint => {
    return datapoint.date.toDateString() == data.date.toDateString();
  });
  var commitDensity = document.getElementById("commitDensity").value || 1;
- chosen[0].count+= commitDensity;
+ chosen[0].count = commitDensity;
  heatmap();
 };
 
